@@ -917,9 +917,7 @@ func (ts *TokenStore) destroyCubbyhole(saltedID string) error {
 
 func (ts *TokenStore) authRenew(
 	req *logical.Request, d *framework.FieldData) (*logical.Response, error) {
-
-	f := framework.LeaseExtend(0, 0, ts.System())
-	return f(req, d)
+	return framework.LeaseExtend(0, 0, ts.System())(req, d)
 }
 
 const (

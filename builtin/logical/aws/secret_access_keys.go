@@ -203,8 +203,7 @@ func (b *backend) secretAccessKeysRenew(
 		lease = &configLease{}
 	}
 
-	f := framework.LeaseExtend(lease.Lease, lease.LeaseMax, b.System())
-	return f(req, d)
+	return framework.LeaseExtend(lease.Lease, lease.LeaseMax, b.System())(req, d)
 }
 
 func secretAccessKeysRevoke(
