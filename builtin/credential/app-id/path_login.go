@@ -76,7 +76,6 @@ func (b *backend) pathLogin(
 			Policies:    policies,
 			Metadata:    metadata,
 			LeaseOptions: logical.LeaseOptions{
-				TTL:       b.System().DefaultLeaseTTL(),
 				Renewable: true,
 			},
 		},
