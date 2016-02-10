@@ -18,12 +18,14 @@ type ReadCommand struct {
 func (c *ReadCommand) Run(args []string) int {
 	var format string
 	var field string
+	var recursive bool
 	var err error
 	var secret *api.Secret
 	var flags *flag.FlagSet
 	flags = c.Meta.FlagSet("read", FlagSetDefault)
 	flags.StringVar(&format, "format", "table", "")
 	flags.StringVar(&field, "field", "", "")
+	flags.BoolVar(&recursive, "recursive", false, "")
 	flags.Usage = func() { c.Ui.Error(c.Help()) }
 	if err := flags.Parse(args); err != nil {
 		return 1
@@ -111,6 +113,7 @@ Read Options:
   -field=field            If included, the raw value of the specified field
                           will be output raw to stdout.
 
+  -recursive              If specified, recursively list secrets
 `
 	return strings.TrimSpace(helpText)
 }
