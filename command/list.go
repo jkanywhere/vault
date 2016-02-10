@@ -27,7 +27,7 @@ func (c *ListCommand) Run(args []string) int {
 
 	args = flags.Args()
 	if len(args) != 1 || len(args[0]) == 0 {
-		c.Ui.Error("read expects one argument")
+		c.Ui.Error("list expects one argument")
 		flags.Usage()
 		return 1
 	}
@@ -47,7 +47,7 @@ func (c *ListCommand) Run(args []string) int {
 	secret, err = client.Logical().List(path)
 	if err != nil {
 		c.Ui.Error(fmt.Sprintf(
-			"Error reading %s: %s", path, err))
+			"Error listing %s: %s", path, err))
 		return 1
 	}
 	if secret == nil {
@@ -81,7 +81,7 @@ General Options:
 
   ` + generalOptionsUsage() + `
 
-Read Options:
+List Options:
 
   -format=table           The format for output. By default it is a whitespace-
                           delimited table. This can also be json or yaml.
